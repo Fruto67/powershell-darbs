@@ -1,0 +1,9 @@
+# Atskaites ID: RVT-4417
+>>
+>> Get-Process |
+>>     Sort-Object -Property WorkingSet64 |
+>>     Select-Object -Last 10 |
+>>     Select-Object -Property ProcessName, Id, @{
+>>         Name = "AtminaMB"
+>>         Expression = { [math]::Round($_.WorkingSet64 / 1MB, 1) }
+>>     }
