@@ -1,0 +1,21 @@
+
+# Atskaites ID: RVT-4417
+
+$servisi = Get-Service
+
+$darbojas = 0
+$aptureti = 0
+
+foreach ($serviss in $servisi) {
+    if ($serviss.Status -eq "Running") {
+        $darbojas++
+    }
+    elseif ($serviss.Status -eq "Stopped") {
+        $aptureti++
+    }
+}
+
+Write-Output "Darbojošies servisi: $darbojas"
+Write-Output "Apturētie servisi: $aptureti"
+Write-Output "Kopā saskaitīti: $($darbojas + $aptureti)"
+Write-Output "Visi servisi sarakstā: $($servisi.Count)"
