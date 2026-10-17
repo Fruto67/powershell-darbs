@@ -1,0 +1,48 @@
+# Atskaites ID: RVT-4417
+
+$kludas = @(
+    Get-WinEvent -FilterHashtable @{
+        LogName = "System"
+        Level = 2
+        StartTime = (Get-Date).AddHours(-48)
+    } -ErrorAction SilentlyContinue
+)
+
+Write-Output "Kļūdu skaits pēdējās 48 stundās: $($kludas.Count)"
+
+if ($kludas.Count -gt 0) {
+    $biežakaisAvots = $kludas |
+        Group-Object -Property ProviderName |
+        Sort-Object -Property Count -Descending |
+        Select-Object -First 1
+
+    Write-Output "Biežākais avots: $($biežakaisAvots.Name)"
+    Write-Output "Kļūdu skaits no šī avota: $($biežakaisAvots.Count)"
+}
+else {
+    Write-Output "Biežākais avots nav nosakāms, jo kļūdas nav atrastas."
+}
+
+
+Get-WinEvent — iegūst notikumus no Windows žurnāliem.
+-FilterHashtable — atlasa notikumus pēc norādītiem nosacījumiem.
+
+LogName = "System" — izvēlas System žurnālu.
+Levl = 2 — atlasa kļūdu līmeņa notikumus.
+StartTime — norāda sākuma laiku, no kura meklēt notikumus.
+Get-Date — iegūst pašreizējo datumu un laiku.
+.AdHours(-48) — aprēķina laiku pirms 48 stundām.
+$kludas — mainīgais, kurā saglabā atrastās kļūdas.
+@(...) — saglabā rezultātus masīvā
+-ErorAction SilentlyContinue — neparāda kļūdu paziņojumus pa komandas izpildi.
+Count — nosaka atrasto kļūdu skaitu.
+Write-Output — izvada informāciju ekrānā.
+if — pārbauda, vai nosacījums ir patiess.
+-gt 0 — pārbauda, vai kļūdu skaits ir lielāks par nulli.
+Group-Object -Property ProviderName — sagrupē kļūdas pēc to avota.
+Sort-Object -Property Count -Descending — sakārto grupas pēc kļūdu skaita dilstošā secībā.
+Select-Object -First 1 — atlasa pirmo grupu ar lielāko kļūdu skaitu.
+$biežakaisAvots.Name — iegūst biežākā avota nosaukumu.
+$biežakaisAvots.Count — iegūst kļūdu skaitu biežākajā avota grupā.
+else — izpilda darbības, ja kļūdu nav.
+-Encoding utf8 — norāda teksta faila kodējumu UTF-8, saglabājot latviešu burtus.
