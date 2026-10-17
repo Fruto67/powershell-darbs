@@ -20,3 +20,20 @@ PowerShell versija: 5.1.19041.6456
 Datums un laiks: 10/16/2026 23:51:43
 Procesu skaits: 153
 PS C:\WINDOWS\system32>
+
+
+
+$dators saglabā datora nosaukumu.
+Get-CimInstance iegūst operetājsistēmas informāciju.
+$PSVersionTable.PsVersion parāda powerShell versiju.
+Get-Date iegust pašreizējo datumu un laiku.
+Get-Process iegūst procesus
+Write-Output izvada informāciju ekrānā.
+
+
+
+
+
+
+
+
