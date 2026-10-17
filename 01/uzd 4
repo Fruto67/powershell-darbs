@@ -1,1 +1,14 @@
+Get-CimInstance -ClassName Win32_Service |
+>>     Where-Object -FilterScript {
+>>         $_.StartMode -eq "Auto" -and $_.State -eq "Stopped"
+>>     }
 
+
+Get-CimInstance — iegūst informāciju par Windows servisiem.
+-ClassName Win32_Service — norāda, ka jāiegūst informācija par Windows servisiem.
+Where-Object — atlasa servisus pēc nosacījumiem.
+-FilterScript — norāda nosacījumu, pēc kura atlasīt servisus.
+$_ — apzīmē pašreizējo servisu.
+StartMode -eq "Auto" — pārbauda, vai servisa startēšanas veids ir automātisks.
+State -eq "Stopped" — pārbauda, vai serviss ir apturēts.
+-and — nosaka, ka abiem nosacījumiem jābūt patiesiem.
