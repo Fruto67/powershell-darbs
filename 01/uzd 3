@@ -19,3 +19,15 @@ Write-Output "Darbojošies servisi: $darbojas"
 Write-Output "Apturētie servisi: $aptureti"
 Write-Output "Kopā saskaitīti: $($darbojas + $aptureti)"
 Write-Output "Visi servisi sarakstā: $($servisi.Count)"
+
+
+
+
+
+Get-Service iegūst Windows servisus.
+$darbojas un $aptureti ir skaititāji.
+foreach pārbauda katru servisu pēc kārtas.
+if pārbauda, vai statuss ir Running.
+else if pārbauda vai statuss ir Stopped
+++ palielina skaitītāju par vienu.
+Write-Output parāda skaitļus.
