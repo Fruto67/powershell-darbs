@@ -7,3 +7,16 @@
 >>         Name = "AtminaMB"
 >>         Expression = { [math]::Round($_.WorkingSet64 / 1MB, 1) }
 >>     }
+
+
+
+
+Get-Process iegūst procesus.
+Sort-Object sakārto tos pēc atmiņas patēriņa
+Select-Object -Last 10 paņem desmit lielākos procesus.
+Processname ir procesa nosaukums.
+Id ir procesa identifikācijas numurs.
+workingSet64 / 1MB pārvērš baitus megabaitos
+[math]::Round(..., 1) noapaļo līdz vienam ciparam aiz komata.
+
+
