@@ -1,0 +1,38 @@
+
+# Atskaites ID: RVT-4417
+
+$adapteri = Get-NetAdapter
+
+$adapteri |
+    Select-Object -Property Name, Status, MacAddress, LinkSpeed |
+    Export-Csv -Path ".\adapteri.csv" -NoTypeInformation -Encoding UTF8
+
+$adapteri |
+    Select-Object -Property Name, Status, MacAddress, LinkSpeed
+
+
+
+Get-NetAdapter — iegūst datora tīkla adapteru informāciju.
+
+
+
+$adapteri — mainīgais, kurā saglabā adapterus.
+
+
+
+Select-Object — izvēlas, kuras kolonnas parādīt.
+
+
+
+Name — adaptera nosaukums.
+
+
+
+Status — adaptera statuss, piemēram, Up vai Disconnected.
+MacAddress — adaptera aparatūras adrese.
+LinkSpeed — savienojuma ātrums.
+Export-Csv — saglabā datus CSV failā.
+-Path ".\adapteri.csv" — norāda faila nosaukumu un atrašanās vietu.
+-NoTypeInformation — neiekļauj papildu PowerShell datu tipa informāciju.
+-Encoding UTF8 — izmanto UTF-8 kodējumu.
+Pēdējais Select-Object — parāda informāciju arī PowerShell logā.
