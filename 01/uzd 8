@@ -1,0 +1,33 @@
+
+# Atskaites ID: RVT-4417
+
+$diski = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DriveType = 3"
+
+foreach ($disks in $diski) {
+    $kopejaisGB = [math]::Round($disks.Size / 1GB, 2)
+    $brivsGB = [math]::Round($disks.FreeSpace / 1GB, 2)
+
+    Write-Output "Disks: $($disks.DeviceID)"
+    Write-Output "Kopejais izmers GB: $kopejaisGB"
+    Write-Output "Briva vieta GB: $brivsGB"
+
+    if ($brivsGB -lt 10) {
+        Write-Output "BRIDINAJUMS: Maz brivas vietas!"
+    }
+
+    Write-Output ""
+}
+
+
+Get-CimInstance — iegūst informāciju no Windows.
+Win32_LogicalDisk — norāda, ka vajadzīga informācija par diskiem.
+-Filter "DriveType = 3" — atlasa lokālos fiksētos diskus.
+$diski — mainīgais, kurā saglabā atrastos diskus.
+foreach — izpilda kodu katram diskam pēc kārtas.
+$disks.Size — diska kopējais izmērs baitos.
+$disks.FreeSpace — brīvā vieta baitos.
+/ 1GB — pārvērš baitus gigabaitos.
+[math]::Round(..., 2) — noapaļo skaitli līdz divām zīmēm aiz komata.
+Write-Output — parāda informāciju.
+if  pārbauda nosacījumu.
+-lt 10 — pārbauda, vai brīvā vieta ir mazāka par 10 GB.
